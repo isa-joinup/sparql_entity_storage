@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\sparql_entity_storage\EventSubscriber;
 
 use Drupal\sparql_entity_storage\Encoder\SparqlEncoder;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
  * Event subscriber for adding RDF content types to the request.

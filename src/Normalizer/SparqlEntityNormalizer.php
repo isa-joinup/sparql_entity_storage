@@ -29,7 +29,7 @@ class SparqlEntityNormalizer extends NormalizerBase {
   protected $entityTypeManager;
 
   /**
-   * RdfEntityNormalizer constructor.
+   * Constructs a SparqlEntityNormalizer object.
    *
    * @param \Drupal\sparql_entity_storage\SparqlSerializer $rdf_serializer
    *   RDF Serializer service.

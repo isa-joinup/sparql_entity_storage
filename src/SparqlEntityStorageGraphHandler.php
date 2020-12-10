@@ -94,7 +94,7 @@ class SparqlEntityStorageGraphHandler implements SparqlEntityStorageGraphHandler
   /**
    * {@inheritdoc}
    */
-  public function getEntityTypeGraphIds(string $entity_type_id, array $limit_to_graph_ids = NULL): array {
+  public function getEntityTypeGraphIds(string $entity_type_id, ?array $limit_to_graph_ids = NULL): array {
     $graph_ids = array_keys($this->getGraphDefinitions($entity_type_id));
     if ($limit_to_graph_ids) {
       $graph_ids = array_intersect($graph_ids, $limit_to_graph_ids);
@@ -141,7 +141,7 @@ class SparqlEntityStorageGraphHandler implements SparqlEntityStorageGraphHandler
   /**
    * {@inheritdoc}
    */
-  public function getEntityTypeGraphUris(string $entity_type_id, array $limit_to_graph_ids = NULL): array {
+  public function getEntityTypeGraphUris(string $entity_type_id, ?array $limit_to_graph_ids = NULL): array {
     if (!isset($this->cache['structure'][$entity_type_id])) {
       $entity_type = $this->entityTypeManager->getDefinition($entity_type_id);
       if ($entity_type->hasKey('bundle') && ($bundle_entity_id = $entity_type->getBundleEntityType())) {
@@ -178,7 +178,7 @@ class SparqlEntityStorageGraphHandler implements SparqlEntityStorageGraphHandler
   /**
    * {@inheritdoc}
    */
-  public function getEntityTypeGraphUrisFlatList(string $entity_type_id, array $limit_to_graph_ids = NULL): array {
+  public function getEntityTypeGraphUrisFlatList(string $entity_type_id, ?array $limit_to_graph_ids = NULL): array {
     $graphs = $this->getEntityTypeGraphUris($entity_type_id, $limit_to_graph_ids);
     return array_reduce($graphs, function (array $uris, array $bundle_graphs): array {
       return array_merge($uris, array_values($bundle_graphs));
@@ -197,7 +197,7 @@ class SparqlEntityStorageGraphHandler implements SparqlEntityStorageGraphHandler
   /**
    * {@inheritdoc}
    */
-  public function clearCache(array $path = NULL): void {
+  public function clearCache(?array $path = NULL): void {
     if (empty($path)) {
       $this->cache = static::EMPTY_CACHE;
       return;

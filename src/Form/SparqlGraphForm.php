@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\sparql_entity_storage\Entity\SparqlGraph;
 use Drupal\sparql_entity_storage\SparqlEntityStorage;
 use Drupal\sparql_entity_storage\SparqlGraphInterface;
@@ -16,6 +17,8 @@ use Drupal\sparql_entity_storage\SparqlGraphInterface;
  * Provides a form class for SPARQL graphs.
  */
 class SparqlGraphForm extends EntityForm {
+
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
@@ -27,7 +30,7 @@ class SparqlGraphForm extends EntityForm {
     $graph = $this->getEntity();
 
     $form['name'] = [
-      '#title' => t('Name'),
+      '#title' => $this->t('Name'),
       '#type' => 'textfield',
       '#default_value' => $graph->label(),
       '#description' => $this->t('The human-readable name of this graph.'),

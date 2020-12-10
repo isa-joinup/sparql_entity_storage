@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\sparql_entity_storage\Event;
 
 use Symfony\Component\EventDispatcher\Event;

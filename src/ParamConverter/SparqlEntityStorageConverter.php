@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\sparql_entity_storage\ParamConverter;
 
 use Drupal\Core\Entity\EntityInterface;
@@ -8,9 +10,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\ParamConverter\EntityConverter;
 use Drupal\Core\TypedData\TranslatableInterface;
 use Drupal\sparql_entity_storage\Entity\Query\Sparql\SparqlArg;
-use Drupal\sparql_entity_storage\SparqlEntityStorage;
 use Drupal\sparql_entity_storage\Event\ActiveGraphEvent;
 use Drupal\sparql_entity_storage\Event\SparqlEntityStorageEvents;
+use Drupal\sparql_entity_storage\SparqlEntityStorage;
 use Drupal\sparql_entity_storage\UriEncoder;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Routing\Route;

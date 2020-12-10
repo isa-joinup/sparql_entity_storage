@@ -5,8 +5,8 @@ declare(strict_types = 1);
 namespace Drupal\Tests\sparql_entity_storage\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
-use Drupal\sparql_serialization_test\Entity\SimpleSparqlTest;
 use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
+use Drupal\sparql_serialization_test\Entity\SimpleSparqlTest;
 
 /**
  * Tests the SPARQL serializer.

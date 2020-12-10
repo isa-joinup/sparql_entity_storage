@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\sparql_entity_storage\Driver\Database\sparql;
 
 use Drupal\Core\Database\StatementInterface;

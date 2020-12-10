@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\Tests\sparql_entity_storage\Traits;
 
 use Drupal\Core\Database\Database;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\sparql_entity_storage\DataCollector;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -13,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 
 /**
- * Class DatabaseDataCollector.
+ * A collector class for SPARQL.
  */
 class SparqlDataCollector extends DataCollector implements DrupalDataCollectorInterface {
 
@@ -49,7 +51,7 @@ class SparqlDataCollector extends DataCollector implements DrupalDataCollectorIn
   /**
    * {@inheritdoc}
    */
-  public function collect(Request $request, Response $response, \Exception $exception = NULL) {
+  public function collect(Request $request, Response $response, ?\Exception $exception = NULL) {
     $queries = $this->database->getLogger()->get('webprofiler');
 
     foreach ($queries as &$query) {
@@ -67,10 +69,7 @@ class SparqlDataCollector extends DataCollector implements DrupalDataCollectorIn
 
     $query_sort = $this->configFactory->get('webprofiler.config')->get('query_sort');
     if ('duration' === $query_sort) {
-      usort($queries, [
-        "\\Drupal\\sparql_entity_storage\\DataCollector\\SparqlDataCollector",
-        "orderQueryByTime",
-      ]);
+      usort($queries, [SparqlDataCollector::class, 'orderQueryByTime']);
     }
 
     $this->data['queries'] = $queries;
@@ -254,7 +253,7 @@ class SparqlDataCollector extends DataCollector implements DrupalDataCollectorIn
    * @return int
    *   Sort for usort.
    */
-  private function orderQueryByTime(array $a, array $b) {
+  protected function orderQueryByTime(array $a, array $b) {
     $at = $a['time'];
     $bt = $b['time'];
 

@@ -218,7 +218,7 @@ class SparqlEntityStorage extends ContentEntityStorageBase implements SparqlEnti
   /**
    * {@inheritdoc}
    */
-  protected function doLoadMultiple(array $ids = NULL, array $graph_ids = []) {
+  protected function doLoadMultiple(?array $ids = NULL, array $graph_ids = []) {
     // Attempt to load entities from the persistent cache. This will remove IDs
     // that were loaded from $ids.
     $entities_from_cache = $this->getFromPersistentCache($ids, $graph_ids);
@@ -245,7 +245,7 @@ class SparqlEntityStorage extends ContentEntityStorageBase implements SparqlEnti
    * @throws \Exception
    *   The query fails with no specific reason.
    */
-  protected function getFromStorage(array $ids = NULL, array $graph_ids = []): array {
+  protected function getFromStorage(?array $ids = NULL, array $graph_ids = []): array {
     if (empty($ids)) {
       return [];
     }
@@ -302,7 +302,7 @@ class SparqlEntityStorage extends ContentEntityStorageBase implements SparqlEnti
       return [];
     }
 
-    // @todo: We should filter per entity per graph and not load the whole
+    // @todo We should filter per entity per graph and not load the whole
     // database only to filter later on.
     // @see https://github.com/ec-europa/sparql_entity_storage/issues/2
     $ids_string = SparqlArg::serializeUris($ids, ' ');
@@ -502,7 +502,7 @@ QUERY;
   /**
    * {@inheritdoc}
    */
-  public function load($id, array $graph_ids = NULL): ?ContentEntityInterface {
+  public function load($id, ?array $graph_ids = NULL): ?ContentEntityInterface {
     $entities = $this->loadMultiple([$id], $graph_ids);
     return array_shift($entities);
   }
@@ -510,7 +510,7 @@ QUERY;
   /**
    * {@inheritdoc}
    */
-  public function loadMultiple(array $ids = NULL, array $graph_ids = NULL): array {
+  public function loadMultiple(?array $ids = NULL, ?array $graph_ids = NULL): array {
     $this->checkGraphs($graph_ids);
 
     // We copy this part from parent::loadMultiple(), otherwise we cannot pass
@@ -607,7 +607,7 @@ QUERY;
   /**
    * {@inheritdoc}
    */
-  public function loadUnchanged($id, array $graph_ids = NULL): ?ContentEntityInterface {
+  public function loadUnchanged($id, ?array $graph_ids = NULL): ?ContentEntityInterface {
     $this->checkGraphs($graph_ids);
 
     // START: Code forked from parent::loadUnchanged() and adapted to accept
@@ -678,7 +678,7 @@ QUERY;
   /**
    * {@inheritdoc}
    */
-  public function loadByProperties(array $values = [], array $graph_ids = NULL): array {
+  public function loadByProperties(array $values = [], ?array $graph_ids = NULL): array {
     $this->checkGraphs($graph_ids);
 
     /** @var \Drupal\sparql_entity_storage\Entity\Query\Sparql\SparqlQueryInterface $query */
@@ -1084,7 +1084,7 @@ QUERY;
    * @param array $values
    *   The field values.
    *
-   * @todo: To be removed when columns will be supported. No need to manually
+   * @todo To be removed when columns will be supported. No need to manually
    * set this.
    */
   protected function applyFieldDefaults($type, array &$values): void {
@@ -1146,7 +1146,7 @@ QUERY;
   /**
    * {@inheritdoc}
    */
-  protected function getFromPersistentCache(array &$ids = NULL, array $graph_ids = []) {
+  protected function getFromPersistentCache(?array &$ids = NULL, array $graph_ids = []) {
     if (!$this->entityType->isPersistentlyCacheable() || empty($ids)) {
       return [];
     }
@@ -1192,7 +1192,7 @@ QUERY;
   /**
    * {@inheritdoc}
    */
-  public function resetCache(array $ids = NULL, array $graph_ids = NULL): void {
+  public function resetCache(?array $ids = NULL, ?array $graph_ids = NULL): void {
     if ($graph_ids && !$ids) {
       throw new \InvalidArgumentException('Passing a value in $graphs_ids works only when used with non-null $ids.');
     }
@@ -1268,7 +1268,7 @@ QUERY;
   /**
    * {@inheritdoc}
    */
-  public function idExists(string $id, string $graph = NULL): bool {
+  public function idExists(string $id, ?string $graph = NULL): bool {
     $id = SparqlArg::uri($id);
     $predicates = SparqlArg::serializeUris($this->bundlePredicate, ' ');
     if ($graph) {
@@ -1294,7 +1294,7 @@ QUERY;
    * @throws \InvalidArgumentException
    *   If at least one of passed graphs doesn't exist for this entity type.
    */
-  protected function checkGraphs(array &$graph_ids = NULL, bool $check_all_graphs = FALSE): void {
+  protected function checkGraphs(?array &$graph_ids = NULL, bool $check_all_graphs = FALSE): void {
     if (!$graph_ids) {
       if ($check_all_graphs) {
         // No passed graph means "all graphs for this entity type".

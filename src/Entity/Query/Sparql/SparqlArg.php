@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\sparql_entity_storage\Entity\Query\Sparql;
 
 use Drupal\Component\Utility\UrlHelper;
@@ -7,8 +9,6 @@ use Drupal\sparql_entity_storage\SparqlEntityStorageFieldHandlerInterface;
 use EasyRdf\Serialiser\Ntriples;
 
 /**
- * Class SparqlArg.
- *
  * Wrap Sparql arguments. This provides a central point for escaping.
  *
  * @todo Return SparqlArgument objects in order to distinguish between

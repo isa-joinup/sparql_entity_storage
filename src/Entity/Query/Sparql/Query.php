@@ -11,9 +11,9 @@ use Drupal\Core\Entity\Query\Sql\ConditionAggregate;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\sparql_entity_storage\Driver\Database\sparql\ConnectionInterface;
-use Drupal\sparql_entity_storage\SparqlEntityStorageInterface;
 use Drupal\sparql_entity_storage\SparqlEntityStorageFieldHandlerInterface;
 use Drupal\sparql_entity_storage\SparqlEntityStorageGraphHandlerInterface;
+use Drupal\sparql_entity_storage\SparqlEntityStorageInterface;
 
 /**
  * The base entity query class for SPARQL stored entities.
@@ -189,7 +189,7 @@ class Query extends QueryBase implements SparqlQueryInterface {
   /**
    * {@inheritdoc}
    */
-  public function graphs(array $graph_ids = NULL): SparqlQueryInterface {
+  public function graphs(?array $graph_ids = NULL): SparqlQueryInterface {
     $this->graphIds = $graph_ids;
     return $this;
   }
@@ -245,7 +245,7 @@ class Query extends QueryBase implements SparqlQueryInterface {
       // Remap the entity reference default tag to the SPARQL entity reference
       // because the first one requires that the query is an instance of the
       // SelectInterface.
-      // @todo: Maybe overwrite the default selection class?
+      // @todo Maybe overwrite the default selection class?
       if (isset($this->alterTags['entity_reference'])) {
         $this->alterTags['sparql_reference'] = $this->alterTags['entity_reference'];
         unset($this->alterTags['entity_reference']);

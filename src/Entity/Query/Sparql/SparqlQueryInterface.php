@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\sparql_entity_storage\Entity\Query\Sparql;
 
 use Drupal\Core\Entity\EntityTypeInterface;
@@ -26,7 +28,7 @@ interface SparqlQueryInterface extends QueryInterface {
    *
    * @return $this
    */
-  public function graphs(array $graph_ids = NULL): self;
+  public function graphs(?array $graph_ids = NULL): self;
 
   /**
    * Returns the entity type.

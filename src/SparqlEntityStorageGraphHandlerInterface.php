@@ -54,7 +54,7 @@ interface SparqlEntityStorageGraphHandlerInterface {
    * @return array
    *   A list of SPARQL graph IDs.
    */
-  public function getEntityTypeGraphIds(string $entity_type_id, array $limit_to_graph_ids = NULL): array;
+  public function getEntityTypeGraphIds(string $entity_type_id, ?array $limit_to_graph_ids = NULL): array;
 
   /**
    * Returns a list of default graph IDs.
@@ -141,7 +141,7 @@ interface SparqlEntityStorageGraphHandlerInterface {
    * @return string[][]
    *   A list of graph URIs.
    */
-  public function getEntityTypeGraphUris(string $entity_type_id, array $limit_to_graph_ids = NULL): array;
+  public function getEntityTypeGraphUris(string $entity_type_id, ?array $limit_to_graph_ids = NULL): array;
 
   /**
    * Checks is a graph is available for a given bundle.
@@ -163,13 +163,13 @@ interface SparqlEntityStorageGraphHandlerInterface {
    *
    * @param string $entity_type_id
    *   The ID of the entity type.
-   * @param array $limit_to_graph_ids
+   * @param array|null $limit_to_graph_ids
    *   Optionally filter the graphs to be returned.
    *
    * @return array
    *   A flat list of graph URIs.
    */
-  public function getEntityTypeGraphUrisFlatList(string $entity_type_id, array $limit_to_graph_ids = NULL): array;
+  public function getEntityTypeGraphUrisFlatList(string $entity_type_id, ?array $limit_to_graph_ids = NULL): array;
 
   /**
    * Returns the graph ID for a given graph URI.
@@ -198,6 +198,6 @@ interface SparqlEntityStorageGraphHandlerInterface {
    *
    * @see \Drupal\Component\Utility\NestedArray::unsetValue()
    */
-  public function clearCache(array $path = NULL): void;
+  public function clearCache(?array $path = NULL): void;
 
 }

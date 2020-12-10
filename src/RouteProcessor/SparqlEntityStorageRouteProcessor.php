@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\sparql_entity_storage\RouteProcessor;
 
 use Drupal\Core\Render\BubbleableMetadata;
@@ -37,7 +39,7 @@ class SparqlEntityStorageRouteProcessor implements OutboundRouteProcessorInterfa
   /**
    * {@inheritdoc}
    */
-  public function processOutbound($route_name, Route $route, array &$parameters, BubbleableMetadata $bubbleable_metadata = NULL) {
+  public function processOutbound($route_name, Route $route, array &$parameters, ?BubbleableMetadata $bubbleable_metadata = NULL) {
     if ($route->hasOption('parameters')) {
       foreach ($route->getOption('parameters') as $type => $parameter) {
         // If the converter exists in the parameter, then the parameter needs to
