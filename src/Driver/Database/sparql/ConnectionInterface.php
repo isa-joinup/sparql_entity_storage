@@ -129,10 +129,10 @@ interface ConnectionInterface {
    * signature. We therefore also ensure that this function is only ever
    * called once.
    *
-   * @param string $target
+   * @param string|null $target
    *   (optional) The target this connection is for.
    */
-  public function setTarget(string $target = NULL): void;
+  public function setTarget(?string $target = NULL): void;
 
   /**
    * Returns the target this connection is associated with.

@@ -5,6 +5,8 @@
  * Includes installation functions for the sparql_entity_storage module.
  */
 
+declare(strict_types = 1);
+
 /**
  * Implements hook_requirements().
  */

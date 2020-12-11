@@ -7,9 +7,9 @@ namespace Drupal\sparql_entity_storage\Entity;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\Core\Entity\ContentEntityTypeInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\sparql_entity_storage\SparqlEntityStorageInterface;
 use Drupal\sparql_entity_storage\SparqlGraphInterface;
 use Drupal\sparql_entity_storage\SparqlMappingInterface;
-use Drupal\sparql_entity_storage\SparqlEntityStorageInterface;
 
 /**
  * Defines the SPARQL mapping config entity.

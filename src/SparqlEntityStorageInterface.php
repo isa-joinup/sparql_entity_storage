@@ -47,7 +47,7 @@ interface SparqlEntityStorageInterface extends ContentEntityStorageInterface {
    *
    * @param string $id
    *   The ID to be checked.
-   * @param string $graph
+   * @param string|null $graph
    *   (optional) The bundle resource uri. If passed, the id will be checked
    *   only against this graph.
    *
@@ -59,7 +59,7 @@ interface SparqlEntityStorageInterface extends ContentEntityStorageInterface {
    * @throws \Exception
    *   The query fails with no reason.
    */
-  public function idExists(string $id, string $graph = NULL): bool;
+  public function idExists(string $id, ?string $graph = NULL): bool;
 
   /**
    * Checks if an entity has a specific graph.
@@ -103,7 +103,7 @@ interface SparqlEntityStorageInterface extends ContentEntityStorageInterface {
    * @return \Drupal\Core\Entity\EntityInterface|null
    *   An entity object. NULL if no matching entity is found.
    */
-  public function load($id, array $graph_ids = NULL): ?ContentEntityInterface;
+  public function load($id, ?array $graph_ids = NULL): ?ContentEntityInterface;
 
   /**
    * Loads one or more entities.
@@ -117,7 +117,7 @@ interface SparqlEntityStorageInterface extends ContentEntityStorageInterface {
    *   An array of entity objects indexed by their IDs. Returns an empty array
    *   if no matching entities are found.
    */
-  public function loadMultiple(array $ids = NULL, array $graph_ids = NULL): array;
+  public function loadMultiple(?array $ids = NULL, ?array $graph_ids = NULL): array;
 
   /**
    * Loads an unchanged entity from the database.
@@ -130,7 +130,7 @@ interface SparqlEntityStorageInterface extends ContentEntityStorageInterface {
    * @return \Drupal\Core\Entity\EntityInterface|null
    *   The unchanged entity, or NULL if the entity cannot be loaded.
    */
-  public function loadUnchanged($id, array $graph_ids = NULL): ?ContentEntityInterface;
+  public function loadUnchanged($id, ?array $graph_ids = NULL): ?ContentEntityInterface;
 
   /**
    * Load entities by their property values.
@@ -144,7 +144,7 @@ interface SparqlEntityStorageInterface extends ContentEntityStorageInterface {
    * @return \Drupal\Core\Entity\EntityInterface[]
    *   An array of entity objects indexed by their ids.
    */
-  public function loadByProperties(array $values = [], array $graph_ids = NULL): array;
+  public function loadByProperties(array $values = [], ?array $graph_ids = NULL): array;
 
   /**
    * Resets the internal, static entity cache.
@@ -160,6 +160,6 @@ interface SparqlEntityStorageInterface extends ContentEntityStorageInterface {
    * @throws \InvalidArgumentException
    *   When $ids is NULL and $graph_ids is not NULL.
    */
-  public function resetCache(array $ids = NULL, array $graph_ids = NULL): void;
+  public function resetCache(?array $ids = NULL, ?array $graph_ids = NULL): void;
 
 }

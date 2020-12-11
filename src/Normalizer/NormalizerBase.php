@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\sparql_entity_storage\Normalizer;
 
-use Drupal\sparql_entity_storage\Encoder\SparqlEncoder;
 use Drupal\serialization\Normalizer\NormalizerBase as SerializationNormalizerBase;
+use Drupal\sparql_entity_storage\Encoder\SparqlEncoder;
 
 /**
  * Base class for Normalizers.

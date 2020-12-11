@@ -225,7 +225,7 @@ class Connection implements ConnectionInterface {
   /**
    * {@inheritdoc}
    */
-  public function setTarget(string $target = NULL): void {
+  public function setTarget(?string $target = NULL): void {
     if (!isset($this->target)) {
       $this->target = $target;
     }
@@ -264,7 +264,7 @@ class Connection implements ConnectionInterface {
   /**
    * {@inheritdoc}
    */
-  public function destroy():void {}
+  public function destroy(): void {}
 
   /**
    * Logs a query duration in the DB logger.

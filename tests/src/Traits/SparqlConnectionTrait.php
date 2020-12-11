@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\Tests\sparql_entity_storage\Traits;
 
 use Drupal\Core\Database\Database;
+use Drupal\sparql_entity_storage\Driver\Database\sparql\Connection;
 use DrupalFinder\DrupalFinder;
 
 /**
@@ -50,7 +53,7 @@ trait SparqlConnectionTrait {
       require_once "$root/core/includes/bootstrap.inc";
     }
 
-    $this->sparqlConnectionInfo = Database::convertDbUrlToConnectionInfo($db_url, DRUPAL_ROOT);
+    $this->sparqlConnectionInfo = Connection::createConnectionOptionsFromUrl($db_url, DRUPAL_ROOT);
     $this->sparqlConnectionInfo['namespace'] = 'Drupal\\sparql_entity_storage\\Driver\\Database\\sparql';
     Database::addConnectionInfo('sparql_default', 'default', $this->sparqlConnectionInfo);
 
